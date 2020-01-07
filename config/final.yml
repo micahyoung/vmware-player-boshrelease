@@ -1,0 +1,5 @@
+name: vmware-player
+blobstore:
+  provider: local
+  options:
+    blobstore_path: test-blobs

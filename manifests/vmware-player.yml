@@ -1,0 +1,28 @@
+name: vmware-player
+
+releases:
+- name: vmware-player
+  version: latest
+
+stemcells:
+- alias: default
+  os: ubuntu-xenial
+  version: 97.16
+
+instance_groups:
+- name: nested-vmware-player
+  azs: [z1]
+  instances: 1
+  jobs:
+  - name: vmware-player
+    release: vmware-player
+  vm_type: default
+  stemcell: default
+  networks:
+  - name: default
+
+update:
+  canaries: 1
+  max_in_flight: 1
+  canary_watch_time: 5000-60000
+  update_watch_time: 5000-60000

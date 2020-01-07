@@ -14,30 +14,9 @@ BOSH Release for vmware-player
 * `git clone <this repo url>`
 * Download [`VMware-Player-14.1.1-7528167.x86_64.bundle`](https://download3.vmware.com/software/player/file/VMware-Player-14.1.1-7528167.x86_64.bundle) to `blobs/`
 * Download [`VMware-VIX-1.17.0-6661328.x86_64.bundle`](https://download3.vmware.com/software/player/file/VMware-VIX-1.17.0-6661328.x86_64.bundle) to `blobs/`
-* `bosh create-release --version 0.0.1-final`
+* `bosh create-release --version 0.0.1 --force`
 * `bosh upload-release -e my-director`
-* `bosh upload-stemcell https://bosh.io/d/stemcells/bosh-vsphere-esxi-ubuntu-xenial-go_agent?v=97.16`
-* `bosh deploy -d vmware-player manifest.yml`
+* `bosh upload-stemcell -e my-director https://bosh.io/d/stemcells/bosh-vsphere-esxi-ubuntu-xenial-go_agent?v=97.16`
+* `bosh deploy -e my-director -d vmware-player manifests/vmware-player.yml`
 
-## Manifest:
-
-Example manifest using nested vmrun-cpi:
-```
-name: vmware-player
-
-releases:
-- name: vmware-player
-  version: latest
-      
-instance_groups:
-- name: nested-hypervisor
-  azs: [z1]
-  instances: 1
-  jobs:
-  - name: vmware-player
-    release: vmware-player
-  vm_type: default
-  stemcell: default
-  networks:
-  - name: default
-```
+See [manifests/vmware-player.yml](manifests/vmware-player.yml) for deployment example.

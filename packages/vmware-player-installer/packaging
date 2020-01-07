@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -o errexit -o pipefail -o nounset
+
+cp VMware-Player-14.1.1-7528167.x86_64.bundle $BOSH_INSTALL_TARGET/VMware-Player.bundle
+cp VMware-VIX-1.17.0-6661328.x86_64.bundle $BOSH_INSTALL_TARGET/VMware-VIX.bundle
